@@ -942,10 +942,6 @@ func closeServer(t *testing.T, server *http.Server) {
 func TestCrlE2E(t *testing.T) {
 	crlCacheCleaner.stopPeriodicCacheCleanup()
 	t.Run("Successful flow", func(t *testing.T) {
-		_ = logger.SetLogLevel("debug")
-		defer func() {
-			_ = logger.SetLogLevel("error")
-		}()
 		cleanupCrlCache(t)
 		previousCrlCacheCleanerTickRate := crlCacheCleanerTickRate
 		previousCacheValidityTime := crlCacheCleaner.cacheValidityTime
