@@ -999,7 +999,7 @@ func TestCrlE2E(t *testing.T) {
 		cfg, err := ParseDSN(crlDSN)
 		assertNilF(t, err, "Failed to parse DSN")
 		_, err = buildSnowflakeConn(context.Background(), *cfg)
-		assertEqualE(t, err, "both OCSP and CRL cannot be enabled at the same time, please disable one of them")
+		assertEqualE(t, err.Error(), "both OCSP and CRL cannot be enabled at the same time, please disable one of them")
 		assertEqualE(t, len(crlInMemoryCache), 0)
 	})
 }
